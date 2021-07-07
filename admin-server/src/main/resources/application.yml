@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: admin-server
+  #配置spring security的用户名和密码
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+  mail:
+    host: smtp.163.com
+    username: 18375382691@163.com
+    #客户端授权码
+    password: DGJIPSTWACHDYEXV
+  boot:
+    admin:
+      notify:
+        mail:
+          from: 18375382691@163.com
+          to: 1739086454@qq.com
+
+server:
+  port: 8762
+
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+#spring.mail.host: smtp.163.com
+#spring.mail.username: 18375382691@163.com
+#spring.mail.password: 19930626bhj
+#spring.boot.admin.notify.mail.to: 18375382691@163.com
